@@ -1,6 +1,23 @@
 {% extends "layout.html" %}
 {% block title %}{{ 'Edit' if blog else 'Add' }} Blog{% endblock %}
+
 {% block content %}
+<!-- TinyMCE Rich Text Editor (No API) -->
+<script src="https://cdn.jsdelivr.net/npm/tinymce@6.8.3/tinymce.min.js"></script>
+<script>
+  tinymce.init({
+    selector: 'textarea[name="content"]',
+    plugins: 'lists link code',
+    toolbar: 'undo redo | bold italic underline | bullist numlist | link | code',
+    menubar: false,
+    setup: function (editor) {
+      editor.on('change', function () {
+        editor.save();
+      });
+    }
+  });
+</script>
+
 <div class="form-container">
     <h2>{{ 'Edit' if blog else 'Add New' }} Blog</h2>
     <form method="POST" enctype="multipart/form-data">
@@ -22,7 +39,6 @@
             <input type="text" id="author" name="author" value="{{ blog.author if blog else '' }}" required>
             <label for="date">Date</label>
             <input type="date" id="date" name="date" value="{{ blog.date if blog else '' }}" required>
-
         {% endif %}
 
         <button type="submit">Submit</button>
