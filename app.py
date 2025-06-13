@@ -45,10 +45,6 @@ def home():
     response = requests.get(url)
     data = response.json()
     articles = data.get('articles', [])
-    
-    # Filter out articles with no image
-    articles = [article for article in articles if article.get('urlToImage')]
-
     return render_template('home.html', blogs=blogs, articles=articles)
 
 @app.route('/login', methods=['GET', 'POST'])
