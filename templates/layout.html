@@ -1,31 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>{% block title %}My Blog{% endblock %}</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
+
 <body>
     <header>
-        <div class="header-top">
-            <h1 class="site-title">Tech Vibes</h1>
-            {% if session.get('user') %}
+        <div style="display: flex; justify-content: space-between; width: 100vw; ">
+            <div class="empty-here"> </div>
+            <div style="display: flex; justify-content: center; align-items: center; flex-direction: column;">
+                <div
+                    style="color: black; font-family: monospace; font-weight: 900; font-size: 30px; align-content: center; justify-content: center;">
+                    TechWorld</div>
+                <div style="display: flex ; justify-content: space-around;">
+                    <a href="{{ url_for('home', category='general') }}">Home</a>
+                    <a href="{{ url_for('dashboard') }}">ByYou</a>
+                    <a href="{{ url_for('home', category='technology') }}">Tech</a>
+                    <a href="{{ url_for('home', category='sports') }}">Sports</a>
+                    <a href="{{ url_for('home', category='entertainment') }}">Entertainment</a>
+                </div>
+            </div>
+            <div class="display: flex; justify-content: center; align-items: center">
+                {% if session.get('user') %}
                 <a href="{{ url_for('logout') }}" class="logout-btn">Logout</a>
-            {% endif %}
-        </div>
-        {% if session.get('user') %}
-        <nav class="navbar">
-            <a href="{{ url_for('dashboard') }}">Published by You</a>
-            <a href="{{ url_for('home', category='general') }}">Home</a>
-            <a href="{{ url_for('home', category='technology') }}">Tech</a>
-            <a href="{{ url_for('home', category='sports') }}">Sports</a>
-            <a href="{{ url_for('home', category='entertainment') }}">Entertainment</a>
-        </nav>
-        {% endif %}
+                {% endif %}
+            </div>
     </header>
 
     <main>
         {% block content %}{% endblock %}
     </main>
 </body>
+
 </html>
