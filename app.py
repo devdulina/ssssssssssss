@@ -45,6 +45,9 @@ def home():
     response = requests.get(url)
     data = response.json()
     articles = data.get('articles', [])
+    
+    # Filter out articles with no image
+    articles = [article for article in articles if article.get('urlToImage')]
 
     return render_template('home.html', blogs=blogs, articles=articles)
 
@@ -80,7 +83,6 @@ def view_blog(index):
         return render_template('view_blog.html', blog=blog)
     else:
         return "Blog not found", 404
-
 
 @app.route('/add', methods=['GET', 'POST'])
 def add_blog():
