@@ -394,6 +394,61 @@ header {
   background-color: #dc3545; /* red */
 }
 
+.robot {    
+    font-size: 14px;
+    font-family: 'Roboto', sans-serif;
+}
+
+.box-container {
+    display: flex;
+    background-color: #F9F9F9;
+    border: 1px solid #D3D3D3;
+    border-radius: 3px;
+    width: 300px;
+    align-items: center;
+    padding: 10px 0px 10px 0px;
+}
+
+input[type="checkbox"] {
+    appearance: none;    
+    width: 26px;
+    height: 26px;    
+    border: 2px solid #C1C1C1;
+    margin: 0px 14px 0px 14px;
+}
+
+input[type="checkbox"]:checked::before {
+    content: url(https://img.icons8.com/?size=20&id=27&format=png&color=1e5180);
+    display: block;    
+    line-height: 20px;
+    padding: 0.05rem 0.6rem 0rem 0.05em;
+}
+
+.logo {    
+    display: block;
+    margin-left: 65%;
+}
+
+.logo-text {
+    text-align: right;
+    font-size: 9px;
+    font-family: 'Roboto', sans-serif;
+}
+
+.logo-text-tos {
+    display: block;
+    text-align: right;
+    font-size: 9px;
+    font-family: 'Roboto', sans-serif;
+    margin-left: 80px;
+}
+
+.container {
+    margin-right: 10px;
+    text-align: center;
+    line-height: 0.1rem;
+}
+
 
 /* Responsive Design */
 @media (max-width: 768px) {

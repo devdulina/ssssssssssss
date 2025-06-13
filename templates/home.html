@@ -29,16 +29,16 @@
     <h2 class="section-header" style="margin-top: 50px;">Top News</h2>
     <div class="card-container">
         {% for article in articles %}
-        <a href="{{ article.url }}" target="_blank" class="card news-card">
             {% if article.urlToImage %}
-                <img src="{{ article.urlToImage }}" alt="News Image">
+                <a href="{{ article.url }}" target="_blank" class="card news-card">
+                    <img src="{{ article.urlToImage }}" alt="News Image">
+                    <div style="padding: 12px;">
+                        <h3>{{ article.title }}</h3>
+                        <p>{{ article.description or 'No description' }}</p>
+                    </div>
+                    <div class="card-line red-line"></div>
+                </a>
             {% endif %}
-            <div style="padding: 12px;">
-                <h3>{{ article.title }}</h3>
-                <p>{{ article.description or 'No description' }}</p>
-            </div>
-            <div class="card-line red-line"></div>
-        </a>
         {% endfor %}
     </div>
 </section>
