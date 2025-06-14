@@ -31,3 +31,27 @@ A blog-style web application built using Flask that displays global news, sports
 
 ## 📂 Project Structure
 
+📁 campus-blog/
+├── app.py
+├── blogs.json
+├── newsapi_key.py
+├── templates/
+│ ├── layout.html
+│ ├── index.html
+│ ├── blog.html
+│ └── edit_blog.html
+├── static/
+│ └── css/
+│ └── style.css
+└── README.md
+
+
+---
+
+## 🧪 How to Run the Project
+
+1. **Clone the repo:**
+   ```bash
+   git clone https://github.com/devdulina/ssssssssssss.git
+   cd ssssssssssss
+
