@@ -1,45 +1,54 @@
-{% extends "layout.html" %}
-{% block title %}Home{% endblock %}
-{% block content %}
-<section class="content-area" style="max-width: 1100px; margin: 30px auto;">
-    
-    <!-- User Blogs -->
-    <h2 class="section-header">Your Blogs</h2>
-    <div class="card-container">
-        {% for blog in blogs %}
-        <a href="{{ url_for('view_blog', index=loop.index0) }}" class="card blog-card" style="text-decoration: none; color: inherit;">
-            {% if blog.image %}
-                <img src="{{ url_for('static', filename=blog.image) }}" alt="Blog Image">
-            {% else %}
-                <img src="{{ url_for('static', filename='default_blog_image.jpg') }}" alt="Default Image">
-            {% endif %}
-            <div style="padding: 12px;">
-                <h3>{{ blog.title }}</h3>
-                <p>{{ blog.content[:150] }}{% if blog.content|length > 150 %}...{% endif %}</p>
-                <small>By {{ blog.author }} | {{ blog.date.split(' ')[0] }}</small>
-            </div>
-            <div class="card-line blue-line"></div>
-        </a>
-        {% else %}
-        <p>No blogs published yet.</p>
-        {% endfor %}
-    </div>
+{% extends "layout.html" %} {% block title %}TechWorld{% endblock %} {% block
+content %}
+<section class="content-area" style="max-width: 1100px; margin: 30px auto">
+  <!-- User Blogs -->
+  <h2 class="section-header">Your Blogs</h2>
+  <div class="card-container">
+    {% for blog in blogs %}
+    <a
+      href="{{ url_for('view_blog', index=loop.index0) }}"
+      class="card blog-card"
+      style="text-decoration: none; color: inherit"
+    >
+      {% if blog.image %}
+      <img
+        src="{{ url_for('static', filename=blog.image) }}"
+        alt="Blog Image"
+      />
+      {% else %}
+      <img
+        src="{{ url_for('static', filename='default_blog_image.jpg') }}"
+        alt="Default Image"
+      />
+      {% endif %}
+      <div style="padding: 12px">
+        <h3>{{ blog.title }}</h3>
+        <p>
+          {{ blog.content[:150] }}{% if blog.content|length > 150 %}...{% endif
+          %}
+        </p>
+        <small>By {{ blog.author }} | {{ blog.date.split(' ')[0] }}</small>
+      </div>
+      <div class="card-line blue-line"></div>
+    </a>
+    {% else %}
+    <p>No blogs published yet.</p>
+    {% endfor %}
+  </div>
 
-    <!-- News API Section -->
-    <h2 class="section-header" style="margin-top: 50px;">Top News</h2>
-    <div class="card-container">
-        {% for article in articles %}
-            {% if article.urlToImage %}
-                <a href="{{ article.url }}" target="_blank" class="card news-card">
-                    <img src="{{ article.urlToImage }}" alt="News Image">
-                    <div style="padding: 12px;">
-                        <h3>{{ article.title }}</h3>
-                        <p>{{ article.description or 'No description' }}</p>
-                    </div>
-                    <div class="card-line red-line"></div>
-                </a>
-            {% endif %}
-        {% endfor %}
-    </div>
+  <!-- News API Section -->
+  <h2 class="section-header" style="margin-top: 50px">Top News</h2>
+  <div class="card-container">
+    {% for article in articles %} {% if article.urlToImage %}
+    <a href="{{ article.url }}" target="_blank" class="card news-card">
+      <img src="{{ article.urlToImage }}" alt="News Image" />
+      <div style="padding: 12px">
+        <h3>{{ article.title }}</h3>
+        <p>{{ article.description or 'No description' }}</p>
+      </div>
+      <div class="card-line red-line"></div>
+    </a>
+    {% endif %} {% endfor %}
+  </div>
 </section>
 {% endblock %}

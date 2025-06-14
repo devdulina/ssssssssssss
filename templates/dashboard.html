@@ -1,62 +1,38 @@
-{% extends "layout.html" %}
-{% block title %}Published by You{% endblock %}
-{% block content %}
+{% extends "layout.html" %} {% block title %}TechWorld{% endblock %} {% block
+content %}
 <div class="dashboard">
-    <div class="dashboard-header">
-        <h2>Your Blogs</h2>
-        <a href="{{ url_for('add_blog') }}" class="btn">Add New Blog</a>
+  <div class="dashboard-header">
+    <h2>Your Blogs</h2>
+    <a href="{{ url_for('add_blog') }}" class="btn">Add New Blog</a>
+  </div>
+  <div class="card-container">
+    {% for blog in blogs %}
+    <a
+      href="{{ url_for('view_blog', index=loop.index0) }}"
+      class="card blog-card"
+      style="text-decoration: none; color: inherit"
+    >
+      {% if blog.image %}
+      <img
+        src="{{ url_for('static', filename=blog.image) }}"
+        alt="Blog Image"
+      />
+      {% endif %}
+      <h3>{{ blog.title }}</h3>
+      <p>{{ blog.content[:150] }}...</p>
+      <small>By {{ blog.author }} on {{ blog.date }}</small>
+    </a>
+    <div class="actions">
+      <a href="{{ url_for('edit_blog', index=loop.index0) }}">Edit</a>
+      <a
+        href="{{ url_for('delete_blog', index=loop.index0) }}"
+        onclick="return confirm('Are you sure?');"
+        >Delete</a
+      >
     </div>
-    <div style="display:flex; width: 100vw; padding: 0 300px 0 300px;">
-        {% for blog in blogs %}
-
-
-
-        <a href="{{ url_for('view_blog', index=loop.index0) }}"
-            style="display: flex; flex-direction: column; width: 350px; padding: 5px; gap: 5px;">
-
-            <!-- image -->
-            {% if blog.image %}
-            <img style="width: 100%; height: 100px; border-radius: 10px;"
-                src="{{ url_for('static', filename=blog.image) }}" alt="Blog Image">
-            <div>
-            </div>
-            {% endif %}
-            <!-- title -->
-            <div style="width: 100%;  font-weight: 800; color: rgba(255, 72, 0, 0.897);">
-                <span>
-                    {{ blog.title }}
-                </span>
-            </div>
-
-            <!-- para -->
-            <div style="width: 100%;   border-radius: 10px;">
-                <span
-                    style="text-wrap: balance; word-wrap: break-word; width: 100%; height: 100%;  color: rgba(0, 0, 0, 0.61);">
-                    {{ blog.content[:80] }}...
-                </span>
-            </div>
-
-            <div style="width: 100%;  border-radius: 10px; font-weight: 500;">
-                <span>
-                    By {{ blog.author }} on {{ blog.date }}
-                </span>
-            </div>
-            <div style="display: flex; width: 100%;  border-radius: 10px; gap: 5px;">
-                <a href="{{ url_for('edit_blog', index=loop.index0) }}"
-                    style="border-radius:5px; padding:  5px 10px; background-color: orange; font-weight: 500; color: white;">
-                    Edit</a>
-                <a href="{{ url_for('delete_blog', index=loop.index0) }}" onclick="return confirm('Are you sure?');"
-                    style="border-radius:5px; padding:  5px 10px; background-color: red; color: white; ">Delete</a>
-            </div>
-
-        </a>
-        {% else %}
-        <p>No blogs published yet.</p>
-        {% endfor %}
-
-
-
-
-    </div>
+    {% else %}
+    <p>No blogs published yet.</p>
+    {% endfor %}
+  </div>
 </div>
 {% endblock %}
