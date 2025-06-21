@@ -10,7 +10,7 @@ app = Flask(__name__)
 app.secret_key = 'supersecretkey'
 
 USER_EMAIL = 'student.dulina@edu.com'
-USER_PASSWORD = 'passwords@123'
+USER_PASSWORD = '123'
 
 UPLOAD_FOLDER = 'static/uploads'
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
